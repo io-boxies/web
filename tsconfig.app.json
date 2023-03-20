@@ -1,0 +1,28 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "**/*.d.ts",
+    "src/**/*",
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/tests/*",
+    "**/node_modules/**",
+    "node_modules/**",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    // "types": [
+    //   "./src"
+    // ]
+  }
+}
