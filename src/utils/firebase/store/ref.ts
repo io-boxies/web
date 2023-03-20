@@ -1,8 +1,9 @@
 import { RequiredField } from '@/utils/exception'
 import { CollectionReference, collection, collectionGroup, Firestore } from '@firebase/firestore'
+import type { QueryDocumentSnapshot, WithFieldValue } from 'firebase/firestore'
 import { type getCollectParam, IoCollection } from './domain'
 
-export function getIoCollection(store: Firestore, p: getCollectParam): CollectionReference {
+export function getIoCollection<T>(store: Firestore, p: getCollectParam): CollectionReference<T> {
   let str: string
   switch (p.c) {
     case IoCollection.USER:
@@ -75,7 +76,7 @@ export function getIoCollection(store: Firestore, p: getCollectParam): Collectio
       throw Error(`IoCollection Enum Member ${p.c} is not Exist`)
   }
 
-  return collection(store, str)
+  return collection(store, str).withConverter(fireConverter<T>())
 }
 
 export function getIoCollectionGroup(store: Firestore, c: IoCollection) {
@@ -104,3 +105,8 @@ export function getIoCollectionGroup(store: Firestore, c: IoCollection) {
   }
   return collectionGroup(store, str)
 }
+
+export const fireConverter = <T>() => ({
+  toFirestore: (data: WithFieldValue<T>) => commonToJson(data),
+  fromFirestore: (snap: QueryDocumentSnapshot) => commonFromJson(snap.data()) as T
+})

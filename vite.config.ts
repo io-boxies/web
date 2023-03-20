@@ -26,16 +26,18 @@ const AI_PLUGIN = AutoImport({
       //   // alias
       //   ['[from]', '[alias]']
       // ]
+      '@firebase/firestore': ['doc', 'updateDoc', 'getDoc', 'getDocs'],
       '@vueuse/core': [
         // named imports
         'useMouse', // import { useMouse } from '@vueuse/core',
         // alias
         ['useFetch', 'useMyFetch'] // import { useFetch as useMyFetch } from '@vueuse/core',
       ],
-      axios: [
-        // default imports
-        ['default', 'axios'] // import { default as axios } from 'axios',
-      ]
+      vitest: ['describe', 'test', 'expect']
+      // axios: [
+      //   // default imports
+      //   ['default', 'axios'] // import { default as axios } from 'axios',
+      // ]
     }
     // example type import
     // {

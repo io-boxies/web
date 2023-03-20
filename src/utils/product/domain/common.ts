@@ -22,7 +22,7 @@ export interface ProdOption {
   readonly addedPrice: number
   readonly label: string[]
   readonly optId: string
-  readonly stockCnt: number
+  stockCnt: number
 }
 export type ProdOptionObj = {
   [k: string]: ProdOption[] | { [k: string]: ProdOption[] }

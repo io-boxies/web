@@ -56,13 +56,10 @@ export interface VendorProdSimilar {
 }
 
 // >>>>> DB >>>>>
-interface ProductDB<T extends Product> extends CrudDB<T> {
-  incrementStockCnt(prod: T, cnt: number): Promise<T>
-}
 
 type VUP = UserProduct<VendorProduct>
 type SUP = UserProduct<ShopProduct>
-export interface VendorProductDB extends ProductDB<VendorProduct> {
+export interface VendorProductDB extends CrudDB<VendorProduct> {
   /**
    * @example
    * ```ts
@@ -79,9 +76,10 @@ export interface VendorProductDB extends ProductDB<VendorProduct> {
     noMore: boolean
   }>
   updateSimilarProd(d: VendorProdSimilar, data: { [k: string]: any }): Promise<void>
+  incrementStockCnt(optId: string, prod: VendorProduct, cnt: number): Promise<VendorProduct>
 }
 
-export interface ShopProductDB extends ProductDB<ShopProduct> {
+export interface ShopProductDB extends CrudDB<ShopProduct> {
   getShopGarments(d: { shopId?: string; vendorId?: string }): Promise<ShopProduct[]>
   shopGarmentExist(vendorProdId: string, shopUserId: string): Promise<boolean>
   exist(uid: string): Promise<boolean>
@@ -93,5 +91,6 @@ export interface ShopProductDB extends ProductDB<ShopProduct> {
   getBatchShopProds(shopIds: string[]): Promise<SUP[]>
   listByIds(uids: string[]): Promise<ShopProduct[]>
   getById(uid: string): Promise<ShopProduct | null>
+  incrementStockCnt(prod: ShopProduct, cnt: number): Promise<number>
 }
 // <<<<< DB <<<<<

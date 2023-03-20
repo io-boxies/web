@@ -38,7 +38,6 @@ declare global {
   const VISIBILITY: typeof import('./utils/product/domain/common')['VISIBILITY']
   const approvePendingTrade: typeof import('./utils/payment/operate')['approvePendingTrade']
   const approveTrade: typeof import('./utils/payment/operate')['approveTrade']
-  const axios: typeof import('axios')['default']
   const batchInQuery: typeof import('./utils/firebase/store/oper')['batchInQuery']
   const checkInRange: typeof import('./utils/input/validators')['checkInRange']
   const checkNotNull: typeof import('./utils/input/validators')['checkNotNull']
@@ -54,10 +53,14 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defrayAmount: typeof import('./utils/payment/payAmount')['defrayAmount']
+  const describe: typeof import('vitest')['describe']
   const dividePartial: typeof import('./utils/order/operate')['dividePartial']
+  const doc: typeof import('@firebase/firestore')['doc']
   const donePendingTrade: typeof import('./utils/payment/operate')['donePendingTrade']
   const effectScope: typeof import('vue')['effectScope']
   const enumToArr: typeof import('./utils/common/type-util')['enumToArr']
+  const expect: typeof import('vitest')['expect']
+  const fireConverter: typeof import('./utils/firebase/store/ref')['fireConverter']
   const formatCurrency: typeof import('./utils/input/formatParse')['formatCurrency']
   const formatDate: typeof import('./utils/common/date')['formatDate']
   const genMockUsers: typeof import('./utils/auth/mock')['genMockUsers']
@@ -67,6 +70,8 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getDateFormat: typeof import('./utils/common/date')['getDateFormat']
+  const getDoc: typeof import('@firebase/firestore')['getDoc']
+  const getDocs: typeof import('@firebase/firestore')['getDocs']
   const getIoCollection: typeof import('./utils/firebase/store/ref')['getIoCollection']
   const getIoCollectionGroup: typeof import('./utils/firebase/store/ref')['getIoCollectionGroup']
   const getMockShops: typeof import('./utils/auth/mock')['getMockShops']
@@ -146,6 +151,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const shipAmount: typeof import('./utils/payment/amount')['shipAmount']
   const shipAreas: typeof import('./utils/common/locate/administrationAreas')['shipAreas']
+  const test: typeof import('vitest')['test']
   const timeToDate: typeof import('./utils/common/date')['timeToDate']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
@@ -154,6 +160,7 @@ declare global {
   const uniqueArr: typeof import('./utils/common/io-fns')['uniqueArr']
   const uniqueFilter: typeof import('./utils/common/io-fns')['uniqueFilter']
   const unref: typeof import('vue')['unref']
+  const updateDoc: typeof import('@firebase/firestore')['updateDoc']
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -216,7 +223,6 @@ declare module 'vue' {
     readonly VISIBILITY: UnwrapRef<typeof import('./utils/product/domain/common')['VISIBILITY']>
     readonly approvePendingTrade: UnwrapRef<typeof import('./utils/payment/operate')['approvePendingTrade']>
     readonly approveTrade: UnwrapRef<typeof import('./utils/payment/operate')['approveTrade']>
-    readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly batchInQuery: UnwrapRef<typeof import('./utils/firebase/store/oper')['batchInQuery']>
     readonly checkInRange: UnwrapRef<typeof import('./utils/input/validators')['checkInRange']>
     readonly checkNotNull: UnwrapRef<typeof import('./utils/input/validators')['checkNotNull']>
@@ -232,10 +238,14 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defrayAmount: UnwrapRef<typeof import('./utils/payment/payAmount')['defrayAmount']>
+    readonly describe: UnwrapRef<typeof import('vitest')['describe']>
     readonly dividePartial: UnwrapRef<typeof import('./utils/order/operate')['dividePartial']>
+    readonly doc: UnwrapRef<typeof import('@firebase/firestore')['doc']>
     readonly donePendingTrade: UnwrapRef<typeof import('./utils/payment/operate')['donePendingTrade']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly enumToArr: UnwrapRef<typeof import('./utils/common/type-util')['enumToArr']>
+    readonly expect: UnwrapRef<typeof import('vitest')['expect']>
+    readonly fireConverter: UnwrapRef<typeof import('./utils/firebase/store/ref')['fireConverter']>
     readonly formatCurrency: UnwrapRef<typeof import('./utils/input/formatParse')['formatCurrency']>
     readonly formatDate: UnwrapRef<typeof import('./utils/common/date')['formatDate']>
     readonly genMockUsers: UnwrapRef<typeof import('./utils/auth/mock')['genMockUsers']>
@@ -245,6 +255,8 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getDateFormat: UnwrapRef<typeof import('./utils/common/date')['getDateFormat']>
+    readonly getDoc: UnwrapRef<typeof import('@firebase/firestore')['getDoc']>
+    readonly getDocs: UnwrapRef<typeof import('@firebase/firestore')['getDocs']>
     readonly getIoCollection: UnwrapRef<typeof import('./utils/firebase/store/ref')['getIoCollection']>
     readonly getIoCollectionGroup: UnwrapRef<typeof import('./utils/firebase/store/ref')['getIoCollectionGroup']>
     readonly getMockShops: UnwrapRef<typeof import('./utils/auth/mock')['getMockShops']>
@@ -324,6 +336,7 @@ declare module 'vue' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly shipAmount: UnwrapRef<typeof import('./utils/payment/amount')['shipAmount']>
     readonly shipAreas: UnwrapRef<typeof import('./utils/common/locate/administrationAreas')['shipAreas']>
+    readonly test: UnwrapRef<typeof import('vitest')['test']>
     readonly timeToDate: UnwrapRef<typeof import('./utils/common/date')['timeToDate']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
@@ -332,6 +345,7 @@ declare module 'vue' {
     readonly uniqueArr: UnwrapRef<typeof import('./utils/common/io-fns')['uniqueArr']>
     readonly uniqueFilter: UnwrapRef<typeof import('./utils/common/io-fns')['uniqueFilter']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
+    readonly updateDoc: UnwrapRef<typeof import('@firebase/firestore')['updateDoc']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

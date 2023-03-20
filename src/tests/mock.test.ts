@@ -1,16 +1,3 @@
-import { describe, test, expect } from 'vitest'
-import {
-  getMockUncles,
-  getMockVendors,
-  getMockShops,
-  mockWorkers,
-  USER_ROLE,
-  mockOrder,
-  newOrder,
-  mockShipment,
-  newShipment
-} from '../utils'
-
 describe('mockup data', async () => {
   test.concurrent('user role  test', () => {
     const uncles = getMockUncles()
@@ -42,3 +29,4 @@ describe('mockup data', async () => {
     expect(order.id).equal(ship.orderDbId)
   })
 })
+export {}

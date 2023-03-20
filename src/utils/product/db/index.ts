@@ -1,18 +1,5 @@
-// import type { IoUser } from '@/utils/auth/domain'
-// import type { PaginateParam } from '@/utils/common'
-// import { getIoCollection } from '@/utils'
-// import { doc } from 'firebase/firestore'
-// import type {
-//   VendorProductDB,
-//   ShopProductDB,
-//   ProdOptionObj,
-//   VendorProdSimilar,
-//   VendorProduct,
-//   ShopProduct
-
 import type { IoUser } from '@/utils/auth'
 import type { PaginateParam } from '@/utils/common'
-import { doc } from 'firebase/firestore'
 import type {
   VendorProductDB,
   VendorProduct,
@@ -47,8 +34,17 @@ export const VENDOR_PROD_DB: VendorProductDB = {
   getOptions: function (prodType: string): ProdOptionObj {
     throw new Error('Function not implemented.')
   },
-  incrementStockCnt: function (prod, cnt) {
-    throw new Error('Function not implemented.')
+  incrementStockCnt: async function (optId, prod, cnt) {
+    const docRef = doc(
+      getIoCollection<VendorProduct>(IoFireApp.getInst().store, { c: IoCollection.VENDOR_PROD })
+    )
+    const data = (await getDoc(docRef)).data()
+    if (!data) throw new Error(`no data ${prod.vendorProdId + prod.vendorProdName}`)
+    const targetOptIdx = data.option.findIndex((opt) => opt.optId === optId)
+    if (targetOptIdx === -1) throw new Error(`no option ${optId}`)
+    data.option[targetOptIdx].stockCnt += cnt
+    await updateDoc(docRef, { option: data.option })
+    return data
   },
   batchCreate: function (userId: string, args: VendorProduct[]): Promise<void> {
     throw new Error('Function not implemented.')
@@ -81,10 +77,7 @@ export const VENDOR_PROD_DB: VendorProductDB = {
   }
 }
 export const SHOP_PROD_DB: ShopProductDB = {
-  getShopGarments: function (d: {
-    shopId?: string | undefined
-    vendorId?: string | undefined
-  }): Promise<ShopProduct[]> {
+  getShopGarments: function (d): Promise<ShopProduct[]> {
     throw new Error('Function not implemented.')
   },
   shopGarmentExist: function (vendorProdId: string, shopUserId: string): Promise<boolean> {
@@ -108,13 +101,11 @@ export const SHOP_PROD_DB: ShopProductDB = {
   getById: function (uid: string): Promise<ShopProduct | null> {
     throw new Error('Function not implemented.')
   },
-
-  // incrementStockCnt: function (prod, cnt) {
-  //   doc(getIoCollection(IoFireApp.))
-  //   prod.stockCnt + cnt
-  // },
-  incrementStockCnt: function (prod, cnt) {
-    throw new Error('zz')
+  incrementStockCnt: async function (prod, cnt) {
+    const docRef = doc(getIoCollection(IoFireApp.getInst().store, { c: IoCollection.SHOP_PROD }))
+    const stockCnt = prod.stockCnt + cnt
+    await updateDoc(docRef, { stockCnt })
+    return stockCnt
   },
   batchCreate: function (userId: string, args: ShopProduct[]): Promise<void> {
     throw new Error('Function not implemented.')
