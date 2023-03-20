@@ -1,0 +1,1 @@
+npm run build:prod && firebase hosting:channel:deploy preview --expires 1d

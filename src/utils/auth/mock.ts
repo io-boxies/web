@@ -1,6 +1,4 @@
-import { faker as fk } from '@faker-js/faker/locale/ko'
 import { type IoUser, USER_ROLE, USER_PROVIDER } from './domain'
-import { LocateType, SHIP_METHOD } from '..'
 
 export const genMockUsers = (): IoUser[] => {
   return [...getMockVendors(), ...getMockUncles(), ...getMockShops(), ...mockWorkers()]

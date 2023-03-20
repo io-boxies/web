@@ -38,6 +38,7 @@ declare global {
   const VISIBILITY: typeof import('./utils/product/domain/common')['VISIBILITY']
   const approvePendingTrade: typeof import('./utils/payment/operate')['approvePendingTrade']
   const approveTrade: typeof import('./utils/payment/operate')['approveTrade']
+  const axios: typeof import('axios')['default']
   const batchInQuery: typeof import('./utils/firebase/store/oper')['batchInQuery']
   const checkInRange: typeof import('./utils/input/validators')['checkInRange']
   const checkNotNull: typeof import('./utils/input/validators')['checkNotNull']
@@ -61,6 +62,7 @@ declare global {
   const enumToArr: typeof import('./utils/common/type-util')['enumToArr']
   const expect: typeof import('vitest')['expect']
   const fireConverter: typeof import('./utils/firebase/store/ref')['fireConverter']
+  const fk: typeof import('@faker-js/faker')['faker']
   const formatCurrency: typeof import('./utils/input/formatParse')['formatCurrency']
   const formatDate: typeof import('./utils/common/date')['formatDate']
   const genMockUsers: typeof import('./utils/auth/mock')['genMockUsers']
@@ -128,6 +130,7 @@ declare global {
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
   const onScopeDispose: typeof import('vue')['onScopeDispose']
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
+  const onSnapshot: typeof import('@firebase/firestore')['onSnapshot']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const orderAmount: typeof import('./utils/payment/amount')['orderAmount']
@@ -146,6 +149,7 @@ declare global {
   const requestTrade: typeof import('./utils/payment/operate')['requestTrade']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const serOrderCnt: typeof import('./utils/order/operate')['serOrderCnt']
+  const setDoc: typeof import('@firebase/firestore')['setDoc']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -223,6 +227,7 @@ declare module 'vue' {
     readonly VISIBILITY: UnwrapRef<typeof import('./utils/product/domain/common')['VISIBILITY']>
     readonly approvePendingTrade: UnwrapRef<typeof import('./utils/payment/operate')['approvePendingTrade']>
     readonly approveTrade: UnwrapRef<typeof import('./utils/payment/operate')['approveTrade']>
+    readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly batchInQuery: UnwrapRef<typeof import('./utils/firebase/store/oper')['batchInQuery']>
     readonly checkInRange: UnwrapRef<typeof import('./utils/input/validators')['checkInRange']>
     readonly checkNotNull: UnwrapRef<typeof import('./utils/input/validators')['checkNotNull']>
@@ -246,6 +251,7 @@ declare module 'vue' {
     readonly enumToArr: UnwrapRef<typeof import('./utils/common/type-util')['enumToArr']>
     readonly expect: UnwrapRef<typeof import('vitest')['expect']>
     readonly fireConverter: UnwrapRef<typeof import('./utils/firebase/store/ref')['fireConverter']>
+    readonly fk: UnwrapRef<typeof import('@faker-js/faker')['faker']>
     readonly formatCurrency: UnwrapRef<typeof import('./utils/input/formatParse')['formatCurrency']>
     readonly formatDate: UnwrapRef<typeof import('./utils/common/date')['formatDate']>
     readonly genMockUsers: UnwrapRef<typeof import('./utils/auth/mock')['genMockUsers']>
@@ -313,6 +319,7 @@ declare module 'vue' {
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
+    readonly onSnapshot: UnwrapRef<typeof import('@firebase/firestore')['onSnapshot']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly orderAmount: UnwrapRef<typeof import('./utils/payment/amount')['orderAmount']>
@@ -331,6 +338,7 @@ declare module 'vue' {
     readonly requestTrade: UnwrapRef<typeof import('./utils/payment/operate')['requestTrade']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly serOrderCnt: UnwrapRef<typeof import('./utils/order/operate')['serOrderCnt']>
+    readonly setDoc: UnwrapRef<typeof import('@firebase/firestore')['setDoc']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>

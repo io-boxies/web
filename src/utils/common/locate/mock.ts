@@ -1,7 +1,4 @@
-import { faker as fk } from '@faker-js/faker/locale/ko'
-import { shipAreas } from './administrationAreas'
 import type { Locate } from './domain'
-import { choice, LocateType } from '..'
 
 const areas = [...shipAreas]
 export function mockLocate(): Locate {

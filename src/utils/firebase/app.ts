@@ -1,7 +1,7 @@
 import { initializeApp } from '@firebase/app'
 import { getAuth, connectAuthEmulator } from '@firebase/auth'
 import { getFirestore, connectFirestoreEmulator } from '@firebase/firestore'
-import { getAnalytics } from '@firebase/analytics'
+import { getAnalytics, isSupported } from '@firebase/analytics'
 import { getStorage, connectStorageEmulator } from '@firebase/storage'
 import { getFunctions, connectFunctionsEmulator } from '@firebase/functions'
 
@@ -25,9 +25,9 @@ export class IoFireApp {
     this.mode = config.mode
 
     this.app = this.getIoFirebaseApp(config)
-    if (typeof window !== 'undefined') {
-      this.analytics = getAnalytics(this.app)
-    }
+    isSupported().then((result) => {
+      if (result) this.analytics = getAnalytics(this.app)
+    })
     this.auth = getAuth(this.app)
     this.store = getFirestore(this.app)
     this.storage = getStorage(this.app)

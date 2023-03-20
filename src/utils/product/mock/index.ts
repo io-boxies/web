@@ -1,3 +1,4 @@
+import { v4 } from 'uuid'
 import type { ShopProduct, ShopVendorProd, VendorProduct } from '../domain'
 export const mockShopVendorProd = () => {
   const result: ShopVendorProd[] = []
@@ -25,6 +26,7 @@ export const mockShopProds = (): ShopProduct[] => {
       createdAt: today,
       updatedAt: today,
       prodName: '숍 상품이름',
+      shopProdId: v4(),
       vendorProdId: '06ef08cd-b65c-5f98-8d92-9fddc606f5a6',
       stockCnt: 15,
       description: '',
@@ -34,6 +36,7 @@ export const mockShopProds = (): ShopProduct[] => {
       createdAt: today,
       updatedAt: today,
       prodName: '숍 상품이름2',
+      shopProdId: v4(),
       vendorProdId: '0d395ede-2235-54fd-83b9-9237157c5ec5',
       stockCnt: 30,
       description: 'abc',

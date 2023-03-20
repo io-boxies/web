@@ -1,4 +1,3 @@
-import { faker as fk } from '@faker-js/faker/locale/ko'
 import {
   type ShipmentVendor,
   mockLocate,
@@ -66,7 +65,7 @@ export function mockOrder(o?: Partial<IoOrder>): IoOrder {
 
 export function mockOrderItems(orderDbId: string): OrderItem[] {
   const amount = newPayAmount({})
-  return new Array(fk.datatype.number({ max: 10 })).map(() => {
+  return new Array(fk.datatype.number({ max: 50 })).map(() => {
     return {
       od: defaultOrderDate(),
       id: fk.datatype.uuid(),

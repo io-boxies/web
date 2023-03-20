@@ -5,6 +5,7 @@ import type { CrudDB, PaginateParam } from '@/utils'
 import type { Unsubscribe } from 'firebase/firestore'
 
 export interface ShopProduct extends Product {
+  readonly shopProdId: string
   readonly prodName: string
   readonly stockCnt: number
 }

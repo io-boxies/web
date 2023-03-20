@@ -36,7 +36,8 @@ export const VENDOR_PROD_DB: VendorProductDB = {
   },
   incrementStockCnt: async function (optId, prod, cnt) {
     const docRef = doc(
-      getIoCollection<VendorProduct>(IoFireApp.getInst().store, { c: IoCollection.VENDOR_PROD })
+      getIoCollection<VendorProduct>(IoFireApp.getInst().store, { c: IoCollection.VENDOR_PROD }),
+      prod.vendorProdId
     )
     const data = (await getDoc(docRef)).data()
     if (!data) throw new Error(`no data ${prod.vendorProdId + prod.vendorProdName}`)
@@ -102,7 +103,10 @@ export const SHOP_PROD_DB: ShopProductDB = {
     throw new Error('Function not implemented.')
   },
   incrementStockCnt: async function (prod, cnt) {
-    const docRef = doc(getIoCollection(IoFireApp.getInst().store, { c: IoCollection.SHOP_PROD }))
+    const docRef = doc(
+      getIoCollection(IoFireApp.getInst().store, { c: IoCollection.SHOP_PROD }),
+      prod.shopProdId
+    )
     const stockCnt = prod.stockCnt + cnt
     await updateDoc(docRef, { stockCnt })
     return stockCnt
