@@ -8,6 +8,7 @@ export interface ShopProduct extends Product {
   readonly shopProdId: string
   readonly prodName: string
   readonly stockCnt: number
+  readonly option: ProdOption // size color kg num_of_entity
 }
 export class ShopVendorProd {
   readonly sProd: ShopProduct
@@ -42,7 +43,7 @@ export interface VendorProduct extends Product {
   readonly titleImgs: string[]
   readonly bodyImgs: string[]
   readonly TBD: { [k: string]: any }
-  readonly option: ProdOption[] // size color kg num_of_entity
+  readonly options: ProdOption[] // size color kg num_of_entity
   readonly minimumOrderQuantity: number
   readonly maximumOrderQuantity: number
   readonly allowPending: boolean

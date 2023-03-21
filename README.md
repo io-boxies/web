@@ -62,3 +62,19 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+
+# Process
+
+### Order
+
+1. collect OrderCollect, CollectItem
+2. create Order from CollectItem's
+3. progress order process
+4. pickup to ShopUser(IoStorage or Locate)
+
+### Shipment
+
+1. make Shipment OrderCollect or ShopProduct
+2. check stock count
+3. progress shipment process

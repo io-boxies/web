@@ -5,6 +5,7 @@
 export {}
 declare global {
   const API_SERVICE_EX: typeof import('./utils/linkage/domain/index')['API_SERVICE_EX']
+  const COLLECT_ITEM_DB: typeof import('./utils/order/db')['COLLECT_ITEM_DB']
   const EX_SERVICE: typeof import('./utils/product/domain/common')['EX_SERVICE']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnvNotMatchedWithInstance: typeof import('./utils/exception/index')['EnvNotMatchedWithInstance']
@@ -18,8 +19,11 @@ declare global {
   const LocateType: typeof import('./utils/common/locate/domain')['LocateType']
   const MapColNotFound: typeof import('./utils/exception/index')['MapColNotFound']
   const NotInitializedIoFireApp: typeof import('./utils/exception/index')['NotInitializedIoFireApp']
+  const ORDER_COLLECT_DB: typeof import('./utils/order/db')['ORDER_COLLECT_DB']
+  const ORDER_DB: typeof import('./utils/order/db')['ORDER_DB']
   const ORDER_STATE: typeof import('./utils/order/domain')['ORDER_STATE']
   const ORDER_TYPE: typeof import('./utils/order/domain')['ORDER_TYPE']
+  const OrderCollector: typeof import('./utils/order/collect-repo')['OrderCollector']
   const PAID_INFO: typeof import('./utils/payment/domain')['PAID_INFO']
   const PAY_HIST_STATE: typeof import('./utils/payment/domain')['PAY_HIST_STATE']
   const PAY_METHOD: typeof import('./utils/payment/domain')['PAY_METHOD']
@@ -194,6 +198,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly API_SERVICE_EX: UnwrapRef<typeof import('./utils/linkage/domain/index')['API_SERVICE_EX']>
+    readonly COLLECT_ITEM_DB: UnwrapRef<typeof import('./utils/order/db')['COLLECT_ITEM_DB']>
     readonly EX_SERVICE: UnwrapRef<typeof import('./utils/product/domain/common')['EX_SERVICE']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnvNotMatchedWithInstance: UnwrapRef<typeof import('./utils/exception/index')['EnvNotMatchedWithInstance']>
@@ -207,8 +212,11 @@ declare module 'vue' {
     readonly LocateType: UnwrapRef<typeof import('./utils/common/locate/domain')['LocateType']>
     readonly MapColNotFound: UnwrapRef<typeof import('./utils/exception/index')['MapColNotFound']>
     readonly NotInitializedIoFireApp: UnwrapRef<typeof import('./utils/exception/index')['NotInitializedIoFireApp']>
+    readonly ORDER_COLLECT_DB: UnwrapRef<typeof import('./utils/order/db')['ORDER_COLLECT_DB']>
+    readonly ORDER_DB: UnwrapRef<typeof import('./utils/order/db')['ORDER_DB']>
     readonly ORDER_STATE: UnwrapRef<typeof import('./utils/order/domain')['ORDER_STATE']>
     readonly ORDER_TYPE: UnwrapRef<typeof import('./utils/order/domain')['ORDER_TYPE']>
+    readonly OrderCollector: UnwrapRef<typeof import('./utils/order/collect-repo')['OrderCollector']>
     readonly PAID_INFO: UnwrapRef<typeof import('./utils/payment/domain')['PAID_INFO']>
     readonly PAY_HIST_STATE: UnwrapRef<typeof import('./utils/payment/domain')['PAY_HIST_STATE']>
     readonly PAY_METHOD: UnwrapRef<typeof import('./utils/payment/domain')['PAY_METHOD']>

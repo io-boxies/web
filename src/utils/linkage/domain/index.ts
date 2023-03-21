@@ -1,12 +1,12 @@
 import type { Unsubscribe } from '@firebase/util'
 
-export type API_SERVICE_EX = 'CAFE' | 'ZIGZAG' | 'EXCEL' | 'ABLY'
-export const API_SERVICE_EX: { [key in API_SERVICE_EX]: API_SERVICE_EX } = Object.freeze({
-  CAFE: 'CAFE',
-  ZIGZAG: 'ZIGZAG',
-  EXCEL: 'EXCEL',
-  ABLY: 'ABLY'
-})
+export enum API_SERVICE_EX {
+  CAFE,
+  ZIGZAG,
+  EXCEL,
+  ABLY,
+  INNER
+}
 export type AnyOrder = { [k: string]: any }
 
 export interface ApiToken {

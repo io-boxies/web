@@ -6,17 +6,46 @@ import type {
   PAY_METHOD,
   ShopVendorProd,
   IoUser,
-  Locate
+  Locate,
+  API_SERVICE_EX
 } from '..'
+/**
+ * --- NEW FLOW ---
+ * 현재는 주문취합으로 부터 들어온 주문들을 바로 주문데이터로 만들지만,
+ * 이렇게되면 중복된 아이템들이 분리되서 들어오게된다
+ * external IoOrder -> inner IoOrder
+ * 하지만 아래 과정을 거침으로서, 취합한 아이템들을 모아서 주문을 생성한다.
+ * (API | Excel Order) -> (create)OrderCollect && (create and merge)CollectItem
+ * -> (create)IoOrder
+ * */
+export interface OrderCollect {
+  // TODO: (ShipmentClient를 위한 정보를 추가해야한다 (셀메이트, 프로세스 고려)
+  // used existOrderIds
+  readonly exOrderId: string // user id -> db id
+  readonly collectedAt: Date
+  readonly order: IoOrder
+  // 주문 또는 삭제? 되어 비활성화 되는 여부 default: false
+  readonly isDone: boolean
+  readonly userRequirements: string
+  readonly provider: API_SERVICE_EX
+
+  readonly raw: any // raw external order(ably, zigzag, etc...
+  readonly clientLocate: Locate
+}
+export interface CollectItem {
+  // db id: user id ->  shop prod id
+  readonly product: ShopVendorProd
+  readonly items: OrderItem[] // 주문취합 과정에서 합쳐진 아이템들 (상세보기용)
+}
 
 export enum ORDER_STATE {
-  BEFORE_ORDER, // 주문전
-  BEFORE_APPROVE, // 승인전
-  BEFORE_PAYMENT, // 결제전
-  BEFORE_READY, // 출고전
-  BEFORE_PICKUP_REQ, // 픽업요청전
-  BEFORE_APPROVE_PICKUP, // 픽업승인전
-  BEFORE_ASSIGN_PICKUP, // 담당자배정전
+  BEFORE_APPROVE, // 도매처 승인전
+  REJECTED, // 도매처 승인전
+  BEFORE_PAYMENT, // 소매 -> 도매 결제전
+  BEFORE_READY, // 도매 상품 출고전
+  BEFORE_PICKUP_REQ, // 소매측 도매 상품 픽업 요청전
+  BEFORE_APPROVE_PICKUP, // 도매 픽업 승인전
+  BEFORE_ASSIGN_PICKUP, // 도매 픽업 담당자 배정전
   BEFORE_PICKUP, // 픽업전
   ONGOING_PICKUP, // 배송중
   PICKUP_COMPLETE, // 픽업완료
@@ -35,6 +64,42 @@ export enum ORDER_STATE {
   CANCEL // 취소중
   // 거래종료
 }
+export interface OrderItem {
+  readonly od: OrderDateMap
+  readonly id: string
+  readonly orderDbId: string
+
+  readonly orderCnt: number
+  readonly activeCnt: number
+  readonly pendingCnt: number
+
+  readonly prod: ShopVendorProd
+  readonly vendor: IoUser
+  readonly shipManagerId?: string
+  readonly prodType: string
+
+  readonly prodAmount: PayAmount
+  readonly pickAmount: PayAmount
+  readonly shipAmount: PayAmount
+}
+
+export interface IoOrder {
+  readonly id: string
+  readonly items: OrderItem[]
+  readonly shop: IoUser
+  readonly uncle?: IoUser
+
+  readonly ship?: ShipmentVendor
+  readonly isDone?: boolean
+  readonly isDirectToShip: boolean // direct to uncle
+  readonly destination: 'storage-shop' | 'client-home' | 'storage-vendor' | 'io-storage-ko-guro-1'
+
+  readonly orderType: ORDER_TYPE
+  readonly beforeStates?: ORDER_STATE[]
+  readonly state: ORDER_STATE
+  readonly cancellations?: OrderCancel[]
+}
+
 export type OrderDateMap = {
   [key in ORDER_STATE]?: Date
 } & { createdAt?: Date; updatedAt?: Date; tossAt?: Date }
@@ -90,68 +155,11 @@ export interface PayAmount {
   pendingAmount: number
   isPending: boolean // 보류 금액으로 채워진 상태인지.
 }
-export interface OrderItem {
-  readonly od: OrderDateMap
-  readonly id: string
-  readonly orderDbId: string
-
-  readonly orderCnt: number
-  readonly activeCnt: number
-  readonly pendingCnt: number
-
-  readonly prod: ShopVendorProd
-  readonly vendor: IoUser
-  readonly shipManagerId?: string
-  readonly prodType: string
-
-  readonly prodAmount: PayAmount
-  readonly pickAmount: PayAmount
-  readonly shipAmount: PayAmount
-}
-
-export interface IoOrder {
-  readonly id: string
-  readonly items: OrderItem[]
-  readonly shop: IoUser
-  readonly uncle?: IoUser
-
-  readonly ship?: ShipmentVendor
-  readonly isDone?: boolean
-  readonly isDirectToShip: boolean // direct to uncle
-  readonly destination: 'storage-shop' | 'client-home' | 'storage-vendor' | 'io-storage-ko-guro-1'
-
-  readonly orderType: ORDER_TYPE
-  readonly beforeStates?: ORDER_STATE[]
-  readonly state: ORDER_STATE
-  readonly cancellations?: OrderCancel[]
-}
-/**
- * --- NEW FLOW ---
- * 현재는 주문취합으로 부터 들어온 주문들을 바로 주문데이터로 만들지만,
- * 이렇게되면 중복된 아이템들이 분리되서 들어오게된다
- * external IoOrder -> inner IoOrder
- * 하지만 아래 과정을 거침으로서, 취합한 아이템들을 모아서 주문을 생성한다.
- * (API | Excel Order) -> (create)OrderCollect && (create and merge)CollectItem
- * -> (create)IoOrder
- * */
-export interface OrderCollect {
-  // used existOrderIds
-  readonly exOrderId: string // user id -> db id
-  readonly collectedAt: Date
-  readonly order: IoOrder
-  // 주문 또는 삭제? 되어 비활성화 되는 여부 default: false
-  readonly isDone: boolean
-  readonly raw: any // raw external order(ably, zigzag, etc... )
-
-  clientLocate: Locate
-}
-export interface CollectItem {
-  // db id: user id ->  shop prod id
-  readonly product: ShopVendorProd
-  readonly cnt: number
-}
 
 type EventOnOrder = (orders: IoOrder[]) => any
+export interface CollectItemDB extends CrudDB<CollectItem> {}
+export interface OrderCollectDB extends Omit<CrudDB<OrderCollect>, 'update' | 'batchUpdate'> {}
+
 export interface OrderDB extends CrudDB<IoOrder> {
   /**
    * 이미 주문 취합/생성이 완료된 외부 주문번호 ID

@@ -41,10 +41,10 @@ export const VENDOR_PROD_DB: VendorProductDB = {
     )
     const data = (await getDoc(docRef)).data()
     if (!data) throw new Error(`no data ${prod.vendorProdId + prod.vendorProdName}`)
-    const targetOptIdx = data.option.findIndex((opt) => opt.optId === optId)
+    const targetOptIdx = data.options.findIndex((opt) => opt.optId === optId)
     if (targetOptIdx === -1) throw new Error(`no option ${optId}`)
-    data.option[targetOptIdx].stockCnt += cnt
-    await updateDoc(docRef, { option: data.option })
+    data.options[targetOptIdx].stockCnt += cnt
+    await updateDoc(docRef, { options: data.options })
     return data
   },
   batchCreate: function (userId: string, args: VendorProduct[]): Promise<void> {

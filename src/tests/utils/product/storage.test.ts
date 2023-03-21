@@ -15,8 +15,8 @@ describe('increase stock count', async () => {
   })
   test.concurrent('increase vendor stock count', async () => {
     const prod = mockVendorProds()[0]
-    const optId = prod.option[0].optId
-    const optStockCnt = prod.option[0].stockCnt
+    const optId = prod.options[0].optId
+    const optStockCnt = prod.options[0].stockCnt
     await setDoc(
       doc(
         getIoCollection(IoFireApp.getInst().store, { c: IoCollection.VENDOR_PROD }),
@@ -27,7 +27,7 @@ describe('increase stock count', async () => {
 
     const cnt = fk.datatype.number({ min: 1000, max: 1000 })
     const newProd = await VENDOR_PROD_DB.incrementStockCnt(optId, prod, cnt)
-    const newOpt = newProd.option.find((x) => x.optId === optId)!
+    const newOpt = newProd.options.find((x) => x.optId === optId)!
     expect(newOpt.stockCnt).toBe(optStockCnt + cnt)
   })
 })

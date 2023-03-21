@@ -1,5 +1,4 @@
-import type { IoOrder } from './domain'
-import { isUuid } from '../input'
+import type { IoOrder, OrderDateMap } from './domain'
 import type { ShipmentVendor } from '../common'
 
 export function validOrder(p: IoOrder) {
@@ -19,7 +18,7 @@ export function newShipment(p: ShipmentVendor) {
   return p
 }
 
-export const defaultOrderDate = () => {
+export const defaultOrderDate = (): OrderDateMap => {
   const currDate = new Date()
   return {
     createdAt: currDate,

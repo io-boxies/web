@@ -30,7 +30,13 @@ export const mockShopProds = (): ShopProduct[] => {
       vendorProdId: '06ef08cd-b65c-5f98-8d92-9fddc606f5a6',
       stockCnt: 15,
       description: '',
-      ctgr: ['숍분류1', '숍분류2']
+      ctgr: ['숍분류1', '숍분류2'],
+      option: {
+        addedPrice: 5000,
+        label: ['여성용 노트북 연노랑', '레드'],
+        optId: 'female-notebook-yellow',
+        stockCnt: 500
+      }
     },
     {
       createdAt: today,
@@ -40,7 +46,13 @@ export const mockShopProds = (): ShopProduct[] => {
       vendorProdId: '0d395ede-2235-54fd-83b9-9237157c5ec5',
       stockCnt: 30,
       description: 'abc',
-      ctgr: ['분류1', '분류2']
+      ctgr: ['분류1', '분류2'],
+      option: {
+        addedPrice: 5000,
+        label: ['터치 핑거홀 무지', '레드'],
+        optId: 'touch-finger',
+        stockCnt: 50
+      }
     }
   ]
 }
@@ -53,7 +65,7 @@ export const mockVendorProds = (): VendorProduct[] => {
       gender: 'FEMALE',
       prodType: 'electronic',
       ctgr: ['notebook', 'RTX'],
-      option: [
+      options: [
         {
           addedPrice: 5000,
           label: ['여성용 노트북 연노랑', '레드'],
@@ -93,7 +105,7 @@ export const mockVendorProds = (): VendorProduct[] => {
       ctgr: ['장갑', 'ETC'],
       allowPending: false,
       fabric: '울/모, 아크릴',
-      option: [
+      options: [
         {
           addedPrice: 5000,
           label: ['터치 핑거홀 무지', '레드'],
