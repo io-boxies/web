@@ -20,7 +20,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 ## Refs
 
 - [vue](https://vuejs.org/guide/quick-start.html "vue")
-- [vuetify](https://vuetifyjs.com/en/components/bottom-navigation/)
 - [vitest](https://vitest.dev/api/#rejects)
 - [vite test](https://vitest.dev/guide/#configuring-vitest)
 - [https://github.com/antfu/unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
@@ -62,7 +61,6 @@ npm run test:unit
 ```sh
 npm run lint
 ```
-
 
 # Process
 

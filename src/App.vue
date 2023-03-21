@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { koKR, dateKoKR } from 'naive-ui'
 // layout
 const DefaultLayout = defineAsyncComponent(() => import('./views/layouts/DefaultLayout.vue'))
 const OtherLayout = defineAsyncComponent(() => import('./views/layouts/OtherLayout.vue'))
@@ -9,7 +10,9 @@ const layoutComponent = computed(() =>
 </script>
 
 <template>
-  <component :is="layoutComponent">
-    <RouterView />
-  </component>
+  <n-config-provider :locale="koKR" :date-locale="dateKoKR">
+    <component :is="layoutComponent">
+      <RouterView />
+    </component>
+  </n-config-provider>
 </template>

@@ -10,12 +10,23 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AboutView: typeof import('./views/AboutView.vue')['default']
+    CardsUserProfile: typeof import('./components/cards/UserProfile.vue')['default']
     DefaultLayout: typeof import('./views/layouts/DefaultLayout.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HomeView: typeof import('./views/HomeView.vue')['default']
+    LayoutsDefaultLayout: typeof import('./views/layouts/DefaultLayout.vue')['default']
+    LayoutsOtherLayout: typeof import('./views/layouts/OtherLayout.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDataTable: typeof import('naive-ui')['NDataTable']
+    NH4: typeof import('naive-ui')['NH4']
+    NSelect: typeof import('naive-ui')['NSelect']
+    NSpace: typeof import('naive-ui')['NSpace']
     OtherLayout: typeof import('./views/layouts/OtherLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TableOrderCollect: typeof import('./components/table/OrderCollect.vue')['default']
     UserProfile: typeof import('./components/cards/UserProfile.vue')['default']
   }
 }

@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 const AI_PLUGIN = AutoImport({
   // targets to transform
@@ -63,9 +64,7 @@ const AI_PLUGIN = AutoImport({
 
   // Custom resolvers, compatible with `unplugin-vue-components`
   // see https://github.com/antfu/unplugin-auto-import/pull/23/
-  resolvers: [
-    /* ... */
-  ]
+  resolvers: [NaiveUiResolver()]
   // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
   // When using TypeScript, we recommend to disable no-undef rule directly as TypeScript already check for them and you don't need to worry about this.
   // eslintrc: {
@@ -83,7 +82,7 @@ export default defineConfig({
     AI_PLUGIN,
     Components({
       extensions: ['vue', 'md', 'svg', 'tsx'],
-      // directoryAsNamespace: true,
+      directoryAsNamespace: true,
       dts: './src/components.d.ts',
       // globalNamespaces: ["global"],
       dirs: ['src/components', 'src/views'],
@@ -100,6 +99,7 @@ export default defineConfig({
       ],
       include: [/\.vue$/, /\.md$/, /\.vue\?vue/, /\.tsx/],
       resolvers: [
+        NaiveUiResolver()
         // (name) => {
         //   console.log("name:", name);
         //   if (name === "MyCustom")
