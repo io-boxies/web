@@ -1,4 +1,4 @@
-import type { Product } from '../product'
+import type { Product, ShopProduct } from '../product'
 
 /**
  * 인아웃박스 창고
@@ -6,6 +6,15 @@ import type { Product } from '../product'
  * 배송 데이터 생성, 재고관리
  */
 export interface IoStorage {
+  storageId: string
+  name: string
+  managerName: string
+
   locate: Location
-  items: Product[]
+  items: Product[] // as collection
+}
+
+export interface StorageDB {
+  addItem(prod: ShopProduct, cnt: number): Promise<void>
+  reduceItem(prod: ShopProduct, cnt: number): Promise<void>
 }

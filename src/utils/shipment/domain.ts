@@ -1,3 +1,5 @@
+import type { ShopProduct } from '../product'
+
 export enum LocateType {
   OFFICE, // 사무실
   SHOP, //매장
@@ -18,6 +20,18 @@ export interface Locate {
   readonly county?: string
   readonly town?: string
   readonly locateType: LocateType
+}
+
+export interface LocateShip {
+  readonly fromLocate: Locate
+  readonly toLocate: Locate
+  readonly shipMsg: string
+  readonly numBox: number
+  readonly items: ShopProduct[]
+  readonly userId: string
+  readonly orderId: string
+  readonly numTrack?: string
+  readonly basicPrice: number
 }
 
 export function locateStr(l: Locate) {

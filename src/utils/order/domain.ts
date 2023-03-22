@@ -27,6 +27,7 @@ export interface OrderCollect {
   readonly isDone: boolean
   readonly userRequirements: string
   readonly provider: API_SERVICE_EX
+  readonly shipClientMsg: string
 
   readonly raw: any // raw external order(ably, zigzag, etc...
   readonly clientLocate: Locate

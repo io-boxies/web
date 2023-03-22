@@ -72,6 +72,17 @@ export function getIoCollection<T>(store: Firestore, p: getCollectParam): Collec
     case IoCollection.REQUEST_CHARGE:
       str = `requestCharge`
       break
+    case IoCollection.STORAGE_IO:
+      str = `ioStorage`
+      break
+    case IoCollection.STORAGE_SHOP_PROD:
+      if (!p.storageId) throw new RequiredField('getIoCollection', 'storageId')
+      str = `ioStorage/${p.uid}/storageShopProd`
+      break
+    case IoCollection.STORAGE_SHIP_HIST:
+      if (!p.storageId) throw new RequiredField('getIoCollection', 'storageId')
+      str = `ioStorage/${p.uid}/storageShipHist`
+      break
     default:
       throw Error(`IoCollection Enum Member ${p.c} is not Exist`)
   }
@@ -106,7 +117,8 @@ export function getIoCollectionGroup(store: Firestore, c: IoCollection) {
   return collectionGroup(store, str)
 }
 
-export const fireConverter = <T>() => ({
-  toFirestore: (data: WithFieldValue<T>) => commonToJson(data),
-  fromFirestore: (snap: QueryDocumentSnapshot) => commonFromJson(snap.data()) as T
+export const fireConverter = <T>(toJson?: (d: T) => any, fromJson?: (d: any) => T) => ({
+  toFirestore: (data: WithFieldValue<T>) => (toJson ? toJson(data as T) : commonToJson(data)),
+  fromFirestore: (snap: QueryDocumentSnapshot) =>
+    fromJson ? fromJson(snap.data()) : (commonFromJson(snap.data()) as T)
 })

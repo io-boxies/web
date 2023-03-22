@@ -17,7 +17,11 @@ export enum IoCollection {
   VIRTUAL_ORDER_PROD,
   VIRTUAL_USER,
   REQUEST_ENCASH,
-  REQUEST_CHARGE
+  REQUEST_CHARGE,
+
+  STORAGE_IO,
+  STORAGE_SHOP_PROD,
+  STORAGE_SHIP_HIST
 }
 
 export interface getCollectParam {
@@ -26,4 +30,5 @@ export interface getCollectParam {
   readonly shopProdId?: string
   readonly vendorProdId?: string
   readonly orderId?: string
+  readonly storageId?: string
 }

@@ -22,14 +22,18 @@ export class ShopVendorProd {
     this.vProd = vendorProd
   }
 }
-/**
- * 옷일경우 에만 채워지는 옵션
- */
+/** 옷일경우 에만 채워지는 옵션 */
 interface GarmentInfo {}
-/**
- * 식품일경우 에만 채워지는 옵션
- */
-interface GroceryInfo {}
+/** 식품일경우 에만 채워지는 옵션 */
+interface GroceryInfo {
+  safeKeepMethod: 'refrigeration' | 'frozen' | 'roomTemper'
+  expirationDate?: Date
+}
+/** 출고 옵션 */
+interface ReleaseInfo {
+  box: 'io-1' | 'io-2' | 'own' // 1호, 2호 ,자사
+  buff: 'no' | 'basic' | 'advance' // 출고시 완충제
+}
 export interface VendorProduct extends Product {
   readonly gender: GENDER
   readonly vendorId: string
@@ -50,6 +54,8 @@ export interface VendorProduct extends Product {
   readonly allowPending: boolean
   readonly fabric: string
   readonly madeBy: string
+
+  readonly releaseInfo?: ReleaseInfo
   readonly garmentInfo?: GarmentInfo
   readonly groceryInfo?: GroceryInfo
 }

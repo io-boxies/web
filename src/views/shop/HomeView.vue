@@ -18,7 +18,7 @@
             placeholder="상품 받는곳"
           />
           <n-select
-            :options="['강남', '구로', '광명'].map((x) => ({ label: x, value: x }))"
+            :options="ioStorages.map((x) => ({ label: x, value: x }))"
             placeholder="IO창고선택"
           />
         </n-space>
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 const products = mockShopVendorProd()
-
+const ioStorages = ['강남', '구로', '광명']
 // const products = shallowRef<any[]>([])
 // onMounted(async () => {
 //   const namesRef = collection(IoFireApp.getInst().store, `names`)
