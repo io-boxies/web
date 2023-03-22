@@ -35,6 +35,7 @@ const AI_PLUGIN = AutoImport({
         ['useFetch', 'useMyFetch'] // import { useFetch as useMyFetch } from '@vueuse/core',
       ],
       vitest: ['describe', 'test', 'expect'],
+      'naive-ui': ['NIcon', 'NButton', 'NText'],
       axios: [
         // default imports
         ['default', 'axios'] // import { default as axios } from 'axios',

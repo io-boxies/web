@@ -17,8 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { HomeOutline } from '@vicons/ionicons5'
-import { NButton, type DataTableColumns } from 'naive-ui'
+import type { DataTableColumns } from 'naive-ui'
 
 type RowData = {
   name: string

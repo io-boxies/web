@@ -1,10 +1,13 @@
 <template>
   <n-space vertical style="padding: 20px">
+    <n-h2>Shop Home</n-h2>
     <n-card>
       <n-space vertical>
-        <n-button strong secondary type="success">주문 생성</n-button>
-        <n-h4>Products:</n-h4>
-        {{ products.map((x) => x.sProd.prodName) }}
+        <n-space> <n-h4>Products:</n-h4> {{ products.map((x) => x.sProd.prodName) }}</n-space>
+        <n-space>
+          <n-button strong secondary type="success">API/엑셀 상품 등록</n-button>
+          <n-button strong secondary>상품 매핑/매칭</n-button>
+        </n-space>
       </n-space>
     </n-card>
     <n-card justify="space-around">
@@ -19,11 +22,12 @@
             placeholder="IO창고선택"
           />
         </n-space>
-        <n-button>주문 & 픽업하기</n-button>
+        <n-button type="warning">Pickup 픽업/Shipment 요청</n-button>
       </n-space>
     </n-card>
     <n-card>
-      <n-button strong secondary type="info">배송하기</n-button>
+      <n-button strong secondary type="info">Client Shipment</n-button>
+      <n-button strong secondary type="error">취소주문체크</n-button>
       <TableOrderCollect />
     </n-card>
   </n-space>
