@@ -8,6 +8,7 @@ export interface ShopProduct extends Product {
   readonly shopProdId: string
   readonly prodName: string
   readonly stockCnt: number
+  // 만약 인풋으로 옵션이 없을때 상품명을 그대로 써서 단일옵션으로 가자
   readonly option: ProdOption // size color kg num_of_entity
 }
 export class ShopVendorProd {

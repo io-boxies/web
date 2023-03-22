@@ -19,7 +19,6 @@ import type {
  * -> (create)IoOrder
  * */
 export interface OrderCollect {
-  // TODO: (ShipmentClient를 위한 정보를 추가해야한다 (셀메이트, 프로세스 고려)
   // used existOrderIds
   readonly exOrderId: string // user id -> db id
   readonly collectedAt: Date

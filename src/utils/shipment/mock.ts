@@ -17,6 +17,6 @@ export function mockLocate(): Locate {
     city: area.city,
     county: area.county,
     town: area.town,
-    locateType: fk.helpers.arrayElement([LocateType.ETC, LocateType.SHOP, LocateType.STORAGE])
+    locateType: fk.helpers.arrayElement([LocateType.ETC, LocateType.SHOP, LocateType.OFFICE])
   }
 }

@@ -1,5 +1,5 @@
 export * from './domain'
-export * from './locate'
+export * from '../shipment'
 export * from './date'
 export * from './json'
 export * from './io-fns'

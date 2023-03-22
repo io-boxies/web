@@ -16,19 +16,13 @@ describe('order validation test ', () => {
     expect(() => validShipment(ship)).toThrow(new Error('invalid uuid'))
   })
 
+  test.todo('duplicate order number test')
+  test.todo('merge exist collect item test')
+
   test.concurrent.fails('validate valid order', () => {
     const ordValid = mockOrder()
     expect(() => validOrder(ordValid)).toThrow('invalid order uuid')
   })
-})
-
-describe.todo('order vendor process', () => {
-  test.todo('request order BEFORE_APPROVE')
-  test.todo('approve order BEFORE_PAYMENT')
-  test.todo('reject order REJECTED')
-})
-describe.todo('order direct process', () => {
-  test.todo('request direct to uncle')
 })
 
 export {}

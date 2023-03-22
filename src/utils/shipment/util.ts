@@ -1,5 +1,5 @@
 import type { FirestoreDataConverter, DocumentSnapshot, DocumentData } from '@firebase/firestore'
-import { commonToJson } from '../json'
+import { commonToJson } from '../common/json'
 import type { Locate } from './domain'
 
 export function validLocate(p: Locate) {

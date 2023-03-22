@@ -1,6 +1,6 @@
 export enum LocateType {
-  SHOP, // 사무실
-  STORAGE, //매장
+  OFFICE, // 사무실
+  SHOP, //매장
   ETC //기타
 }
 export interface Locate {

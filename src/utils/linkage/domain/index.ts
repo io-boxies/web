@@ -8,6 +8,12 @@ export enum API_SERVICE_EX {
   INNER
 }
 export type AnyOrder = { [k: string]: any }
+export interface ExOrderRepo {
+  getOrders(): AnyOrder[]
+  getCancels(): AnyOrder[]
+  forwardShipping(): AnyOrder[]
+  forwardShipDone(): AnyOrder[]
+}
 
 export interface ApiToken {
   readonly dbId: string
