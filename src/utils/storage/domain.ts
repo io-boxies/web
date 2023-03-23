@@ -1,4 +1,5 @@
-import type { Product, ShopProduct } from '../product'
+import type { ShopProduct } from '../product'
+import type { Locate } from '../shipment/domain'
 
 /**
  * 인아웃박스 창고
@@ -6,15 +7,15 @@ import type { Product, ShopProduct } from '../product'
  * 배송 데이터 생성, 재고관리
  */
 export interface IoStorage {
-  storageId: string
   name: string
   managerName: string
 
-  locate: Location
-  items: Product[] // as collection
+  locate: Locate
+  items?: ShopProduct[] // as collection
 }
 
 export interface StorageDB {
   addItem(prod: ShopProduct, cnt: number): Promise<void>
   reduceItem(prod: ShopProduct, cnt: number): Promise<void>
+  getItems(storageId: string, shopId: string): Promise<void>
 }

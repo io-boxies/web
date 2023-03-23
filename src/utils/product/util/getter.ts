@@ -1,8 +1,7 @@
 import { v5 } from 'uuid'
 import type { ProdOption } from '..'
-import { v5Namespace } from '../../common/io-fns'
 
-export const genVendorProdUid = (p: {
+export const newVendorProdUid = (p: {
   vendorProdName: string
   prodType: string
   options: ProdOption[]

@@ -1,9 +1,3 @@
-<!-- <n-space>
-        <n-icon class="button" size="25">
-          <HomeOutline />
-        </n-icon>
-        <n-h4>주문 수집 테이블</n-h4>
-      </n-space> -->
 <template>
   <n-data-table
     v-model:checked-row-keys="checkedRowKeys"
@@ -21,16 +15,14 @@ import type { DataTableColumns } from 'naive-ui'
 
 type RowData = {
   name: string
-  age: number
   address: string
   key: number
   shipAble: boolean
 }
 
-const data = new Array(20).fill(10).map<RowData>((_, index) => ({
-  name: `Edward King ${index}`,
-  age: 32,
-  address: `London, Park Lane no. ${index}`,
+const data = new Array(3).fill(10).map<RowData>((_, index) => ({
+  name: fk.name.fullName(),
+  address: fk.address.cityName() + fk.address.streetAddress(),
   key: index,
   shipAble: index % 2 == 0
 }))
@@ -58,11 +50,7 @@ const columns: DataTableColumns<RowData> = [
     key: 'name'
   },
   {
-    title: 'Age',
-    key: 'age'
-  },
-  {
-    title: 'Tags',
+    title: '배송가능여부',
     key: 'tags',
     render(row) {
       return h(
@@ -82,16 +70,4 @@ const columns: DataTableColumns<RowData> = [
     key: 'address'
   }
 ]
-
-// const data = new Array(10).fill(10).map((x) => {
-//   return {
-//     idx: x,
-//     name: fk.commerce.productName(),
-//     calories: fk.datatype.number({ max: 1000 }),
-//     fat: fk.datatype.number({ max: 1000 }),
-//     carbs: fk.datatype.number({ max: 1000 }),
-//     protein: fk.datatype.number({ max: 1000 }),
-//     iron: fk.datatype.number({ max: 1000 })
-//   }
-// })
 </script>

@@ -7,7 +7,7 @@ export enum LocateType {
 }
 export interface Locate {
   readonly code?: string
-  readonly alias: string
+  alias: string
   readonly latitude?: number // 위도
   readonly longitude?: number // 경도
   readonly detailLocate?: string

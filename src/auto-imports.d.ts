@@ -39,6 +39,7 @@ declare global {
   const SALE_MANAGE: typeof import('./utils/auth/domain')['SALE_MANAGE']
   const SHIP_METHOD: typeof import('./utils/shipment/domain')['SHIP_METHOD']
   const SHOP_PROD_DB: typeof import('./utils/product/db/index')['SHOP_PROD_DB']
+  const STORAGE_DB: typeof import('./utils/storage/db')['STORAGE_DB']
   const SalaryMethod: typeof import('./utils/auth/domain')['SalaryMethod']
   const ShipClientRepo: typeof import('./utils/shipment/repo/client')['ShipClientRepo']
   const ShipVendorRepo: typeof import('./utils/shipment/repo/vendor')['ShipVendorRepo']
@@ -78,7 +79,6 @@ declare global {
   const formatCurrency: typeof import('./utils/input/formatParse')['formatCurrency']
   const formatDate: typeof import('./utils/common/date')['formatDate']
   const genMockUsers: typeof import('./utils/auth/mock')['genMockUsers']
-  const genVendorProdUid: typeof import('./utils/product/util/getter')['genVendorProdUid']
   const getAmount: typeof import('./utils/payment/payAmount')['getAmount']
   const getCurrDate: typeof import('./utils/common/date')['getCurrDate']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -114,19 +114,24 @@ declare global {
   const locateToStr: typeof import('./utils/shipment/util')['locateToStr']
   const markRaw: typeof import('vue')['markRaw']
   const mergeAmount: typeof import('./utils/payment/payAmount')['mergeAmount']
+  const mockCollectItem: typeof import('./utils/order/mock/collect')['mockCollectItem']
+  const mockIoStorage: typeof import('./utils/storage/mock/index')['mockIoStorage']
   const mockLocate: typeof import('./utils/shipment/mock')['mockLocate']
-  const mockOrder: typeof import('./utils/order/mock/index')['mockOrder']
-  const mockOrderItems: typeof import('./utils/order/mock/index')['mockOrderItems']
-  const mockShipment: typeof import('./utils/order/mock/index')['mockShipment']
+  const mockOrder: typeof import('./utils/order/mock/order')['mockOrder']
+  const mockOrderCollect: typeof import('./utils/order/mock/collect')['mockOrderCollect']
+  const mockOrderItems: typeof import('./utils/order/mock/order')['mockOrderItems']
+  const mockShipment: typeof import('./utils/order/mock/order')['mockShipment']
   const mockShopProds: typeof import('./utils/product/mock/index')['mockShopProds']
   const mockShopVendorProd: typeof import('./utils/product/mock/index')['mockShopVendorProd']
   const mockVendorProds: typeof import('./utils/product/mock/index')['mockVendorProds']
   const mockWorkers: typeof import('./utils/auth/mock')['mockWorkers']
+  const newIoStorage: typeof import('./utils/storage/constructor')['newIoStorage']
   const newOrder: typeof import('./utils/order/constructor')['newOrder']
   const newPayAmount: typeof import('./utils/payment/payAmount')['newPayAmount']
   const newPayHistory: typeof import('./utils/payment/constructor')['newPayHistory']
   const newShipment: typeof import('./utils/shipment/constructor')['newShipment']
   const newShopProduct: typeof import('./utils/product/util/constructor')['newShopProduct']
+  const newVendorProdUid: typeof import('./utils/product/util/getter')['newVendorProdUid']
   const newVirtualProduct: typeof import('./utils/product/util/constructor')['newVirtualProduct']
   const nextTick: typeof import('vue')['nextTick']
   const okNullPassword: typeof import('./utils/input/validators')['okNullPassword']
@@ -188,6 +193,7 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
   const v5Namespace: typeof import('./utils/common/io-fns')['v5Namespace']
+  const validIoStorage: typeof import('./utils/storage/constructor')['validIoStorage']
   const validLocate: typeof import('./utils/shipment/util')['validLocate']
   const validOrder: typeof import('./utils/order/constructor')['validOrder']
   const validShipment: typeof import('./utils/shipment/constructor')['validShipment']
@@ -241,6 +247,7 @@ declare module 'vue' {
     readonly SALE_MANAGE: UnwrapRef<typeof import('./utils/auth/domain')['SALE_MANAGE']>
     readonly SHIP_METHOD: UnwrapRef<typeof import('./utils/shipment/domain')['SHIP_METHOD']>
     readonly SHOP_PROD_DB: UnwrapRef<typeof import('./utils/product/db/index')['SHOP_PROD_DB']>
+    readonly STORAGE_DB: UnwrapRef<typeof import('./utils/storage/db')['STORAGE_DB']>
     readonly SalaryMethod: UnwrapRef<typeof import('./utils/auth/domain')['SalaryMethod']>
     readonly ShipClientRepo: UnwrapRef<typeof import('./utils/shipment/repo/client')['ShipClientRepo']>
     readonly ShipVendorRepo: UnwrapRef<typeof import('./utils/shipment/repo/vendor')['ShipVendorRepo']>
@@ -280,7 +287,6 @@ declare module 'vue' {
     readonly formatCurrency: UnwrapRef<typeof import('./utils/input/formatParse')['formatCurrency']>
     readonly formatDate: UnwrapRef<typeof import('./utils/common/date')['formatDate']>
     readonly genMockUsers: UnwrapRef<typeof import('./utils/auth/mock')['genMockUsers']>
-    readonly genVendorProdUid: UnwrapRef<typeof import('./utils/product/util/getter')['genVendorProdUid']>
     readonly getAmount: UnwrapRef<typeof import('./utils/payment/payAmount')['getAmount']>
     readonly getCurrDate: UnwrapRef<typeof import('./utils/common/date')['getCurrDate']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -316,19 +322,24 @@ declare module 'vue' {
     readonly locateToStr: UnwrapRef<typeof import('./utils/shipment/util')['locateToStr']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mergeAmount: UnwrapRef<typeof import('./utils/payment/payAmount')['mergeAmount']>
+    readonly mockCollectItem: UnwrapRef<typeof import('./utils/order/mock/collect')['mockCollectItem']>
+    readonly mockIoStorage: UnwrapRef<typeof import('./utils/storage/mock/index')['mockIoStorage']>
     readonly mockLocate: UnwrapRef<typeof import('./utils/shipment/mock')['mockLocate']>
-    readonly mockOrder: UnwrapRef<typeof import('./utils/order/mock/index')['mockOrder']>
-    readonly mockOrderItems: UnwrapRef<typeof import('./utils/order/mock/index')['mockOrderItems']>
-    readonly mockShipment: UnwrapRef<typeof import('./utils/order/mock/index')['mockShipment']>
+    readonly mockOrder: UnwrapRef<typeof import('./utils/order/mock/order')['mockOrder']>
+    readonly mockOrderCollect: UnwrapRef<typeof import('./utils/order/mock/collect')['mockOrderCollect']>
+    readonly mockOrderItems: UnwrapRef<typeof import('./utils/order/mock/order')['mockOrderItems']>
+    readonly mockShipment: UnwrapRef<typeof import('./utils/order/mock/order')['mockShipment']>
     readonly mockShopProds: UnwrapRef<typeof import('./utils/product/mock/index')['mockShopProds']>
     readonly mockShopVendorProd: UnwrapRef<typeof import('./utils/product/mock/index')['mockShopVendorProd']>
     readonly mockVendorProds: UnwrapRef<typeof import('./utils/product/mock/index')['mockVendorProds']>
     readonly mockWorkers: UnwrapRef<typeof import('./utils/auth/mock')['mockWorkers']>
+    readonly newIoStorage: UnwrapRef<typeof import('./utils/storage/constructor')['newIoStorage']>
     readonly newOrder: UnwrapRef<typeof import('./utils/order/constructor')['newOrder']>
     readonly newPayAmount: UnwrapRef<typeof import('./utils/payment/payAmount')['newPayAmount']>
     readonly newPayHistory: UnwrapRef<typeof import('./utils/payment/constructor')['newPayHistory']>
     readonly newShipment: UnwrapRef<typeof import('./utils/shipment/constructor')['newShipment']>
     readonly newShopProduct: UnwrapRef<typeof import('./utils/product/util/constructor')['newShopProduct']>
+    readonly newVendorProdUid: UnwrapRef<typeof import('./utils/product/util/getter')['newVendorProdUid']>
     readonly newVirtualProduct: UnwrapRef<typeof import('./utils/product/util/constructor')['newVirtualProduct']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly okNullPassword: UnwrapRef<typeof import('./utils/input/validators')['okNullPassword']>
@@ -390,6 +401,7 @@ declare module 'vue' {
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly v5Namespace: UnwrapRef<typeof import('./utils/common/io-fns')['v5Namespace']>
+    readonly validIoStorage: UnwrapRef<typeof import('./utils/storage/constructor')['validIoStorage']>
     readonly validLocate: UnwrapRef<typeof import('./utils/shipment/util')['validLocate']>
     readonly validOrder: UnwrapRef<typeof import('./utils/order/constructor')['validOrder']>
     readonly validShipment: UnwrapRef<typeof import('./utils/shipment/constructor')['validShipment']>

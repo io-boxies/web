@@ -10,5 +10,8 @@ export const STORAGE_DB: StorageDB = {
   reduceItem: function (prod: ShopProduct, cnt: number): Promise<void> {
     // getIoCollection(IoFireApp.getInst().store, { c: IoCollection.STORAGE_SHOP_PROD })
     throw new Error('Function not implemented.')
+  },
+  getItems: function (storageId: string, shopId: string): Promise<void> {
+    throw new Error('Function not implemented.')
   }
 }
