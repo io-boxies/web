@@ -26,7 +26,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@editorjs/editorjs": "^2.26.5",
+    "@editorjs/editorjs": "2.27.0-rc.4",
     "@faker-js/faker": "^7.6.0",
     "@rushstack/eslint-patch": "^1.2.0",
     "@types/jsdom": "^21.1.0",
