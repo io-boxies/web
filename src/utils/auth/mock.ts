@@ -93,7 +93,7 @@ export const getMockUncles = (): IoUser[] => {
               detailLocate: '신당동 193-2',
               postalCode: '04568',
               code: '1114061500',
-              locateType: LocateType.STORAGE,
+              locateType: LocateType.OFFICE,
               alias: '디오트',
               phone: '11',
               city: '서울특별시',
@@ -114,7 +114,7 @@ export const getMockUncles = (): IoUser[] => {
               lastName: '청평화',
               postalCode: '04568',
               city: '서울특별시',
-              locateType: LocateType.STORAGE
+              locateType: LocateType.OFFICE
             },
             amount: 1000
           },
@@ -130,7 +130,7 @@ export const getMockUncles = (): IoUser[] => {
               phone: '11',
               detailLocate: '신당동 200-5',
               firstName: '누죤',
-              locateType: LocateType.STORAGE,
+              locateType: LocateType.ETC,
               postalCode: '04566'
             },
             amount: 2000
@@ -140,7 +140,7 @@ export const getMockUncles = (): IoUser[] => {
               city: '서울특별시',
               town: '신당동',
               code: '1114061500',
-              locateType: LocateType.STORAGE,
+              locateType: LocateType.OFFICE,
               postalCode: '04569',
               firstName: 'apm',
               country: 'KO',

@@ -9,14 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AboutView: typeof import('./views/AboutView.vue')['default']
     AnonymousHome: typeof import('./views/AnonymousHome.vue')['default']
-    CardsUserProfile: typeof import('./components/cards/UserProfile.vue')['default']
     CardTabStorages: typeof import('./components/card/TabStorages.vue')['default']
     CardUserProfile: typeof import('./components/card/UserProfile.vue')['default']
-    DefaultLayout: typeof import('./views/layouts/DefaultLayout.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    HomeView: typeof import('./views/HomeView.vue')['default']
     LayoutsDefaultLayout: typeof import('./views/layouts/DefaultLayout.vue')['default']
     LayoutsNaviMenu: typeof import('./views/layouts/NaviMenu.vue')['default']
     LayoutsOtherLayout: typeof import('./views/layouts/OtherLayout.vue')['default']
@@ -42,12 +38,10 @@ declare module '@vue/runtime-core' {
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
     NText: typeof import('naive-ui')['NText']
-    OtherLayout: typeof import('./views/layouts/OtherLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShopHomeView: typeof import('./views/shop/HomeView.vue')['default']
     TableCollectItem: typeof import('./components/table/CollectItem.vue')['default']
     TableOrderCollect: typeof import('./components/table/OrderCollect.vue')['default']
-    UserProfile: typeof import('./components/cards/UserProfile.vue')['default']
   }
 }
